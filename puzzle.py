@@ -37,7 +37,12 @@ def get_vertical(board: list[str], col: int, begin: int, end: int) -> list[int]:
                     "  2  ****"], 4, 3, 8)
     [1, 8, 1]
     """
-    pass
+    result = []
+    for sym in range(begin, end + 1):
+        if board[sym][col].isnumeric():
+            result.append(int(board[sym][col]))
+
+    return result
 
 def validate_board(board: list[str]) -> bool:
     """
