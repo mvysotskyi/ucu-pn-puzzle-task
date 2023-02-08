@@ -20,7 +20,12 @@ def get_horizontal(board: list[str], row: int, begin: int, end: int) -> list[int
                     "  2  ****"], 6, 0, 8)
     [3, 1]
     """
-    pass
+    result = []
+    for sym in range(begin, end + 1):
+        if board[row][sym].isnumeric():
+            result.append(int(board[row][sym]))
+
+    return result
 
 def get_vertical(board: list[str], col: int, begin: int, end: int) -> list[int]:
     """
