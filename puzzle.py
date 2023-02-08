@@ -63,7 +63,28 @@ def validate_board(board: list[str]) -> bool:
                     "  2  ****"])
     False
     """
-    pass
+    ref_set = {num for num in range(1, 10)}
+
+    for idx in range(9):
+        col = get_vertical(board, idx, 0, 8)
+        row = get_horizontal(board, idx, 0, 8)
+
+        if len(col) != len(set(col)) or len(row) != len(set(row)):
+            return False
+
+        if not ref_set.issuperset(col) or not ref_set.issuperset(row):
+            return False
+
+    for idx in range(0, 5):
+        col = get_vertical(board, idx, 4 - idx, 8 - idx)
+        row = get_horizontal(board, 8 - idx, idx, idx + 4)
+
+        central = {int(board[8 - idx][idx])} if board[8 - idx][idx].isnumeric() else set()
+
+        if set(col) & set(row) != central:
+            return False
+
+    return True
 
 if __name__ == "__main__":
     import doctest
